@@ -49,11 +49,11 @@ export const CodeBlock = memo(
     }, [code]);
 
     return (
-      <div className={classNames('relative group text-left', className)}>
+      <div className={classNames('relative group text-left border-l-4 border-[#00c6fa] pl-2', className)}>
         <div
           className={classNames(
             styles.CopyButtonContainer,
-            'bg-white absolute top-[10px] right-[10px] rounded-md z-10 text-lg flex items-center justify-center opacity-0 group-hover:opacity-100',
+            'bg-gradient-to-r from-[#00c6fa] to-[#1de52f] absolute top-[10px] right-[10px] rounded-md z-10 text-lg flex items-center justify-center opacity-0 group-hover:opacity-100',
             {
               'rounded-l-0 opacity-100': copied,
             },

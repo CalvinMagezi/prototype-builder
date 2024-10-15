@@ -1,6 +1,6 @@
 {
-  "name": "bolt",
-  "description": "StackBlitz AI Agent",
+  "name": "mts-prototype-builder",
+  "description": "MTS Prototype Builder",
   "private": true,
   "license": "MIT",
   "packageManager": "pnpm@9.4.0",
@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^0.0.39",
+    "@ai-sdk/google": "^0.0.51",
     "@ai-sdk/openai": "^0.0.66",
     "@codemirror/autocomplete": "^6.17.0",
     "@codemirror/commands": "^6.6.0",

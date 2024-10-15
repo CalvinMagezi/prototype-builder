@@ -12,13 +12,12 @@ import { Messages } from './Messages.client';
 import { SendButton } from './SendButton.client';
 
 import styles from './BaseChat.module.scss';
-
 const EXAMPLE_PROMPTS = [
-  { text: 'Build a todo app in React using Tailwind' },
-  { text: 'Build a simple blog using Astro' },
-  { text: 'Create a cookie consent form using Material UI' },
-  { text: 'Make a space invaders game' },
-  { text: 'How do I center a div?' },
+  { text: 'Create me a company landing page' },
+  { text: 'Create me a blog website' },
+  { text: 'Create me a resume' },
+  { text: 'Create me a portfolio website' },
+  { text: 'Create me a website for a product' },
 ];
 
 const TEXTAREA_MIN_HEIGHT = 76;
@@ -71,7 +70,7 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
         ref={ref}
         className={classNames(
           styles.BaseChat,
-          'relative flex h-full w-full overflow-hidden bg-bolt-elements-background-depth-1',
+          'relative flex h-full w-full overflow-hidden bg-gradient-to-br from-[#131619] via-[#1a1e22] to-[#231f20]  border-gradient-to-r from-[#00c6fa] to-[#1de52f]',
         )}
         data-chat-visible={showChat}
       >
@@ -79,12 +78,13 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
         <div ref={scrollRef} className="flex overflow-scroll w-full h-full">
           <div className={classNames(styles.Chat, 'flex flex-col flex-grow min-w-[var(--chat-min-width)] h-full')}>
             {!chatStarted && (
-              <div id="intro" className="mt-[26vh] max-w-chat mx-auto">
+              <div id="intro" className="mt-[10vh] max-w-chat mx-auto">
+                <img src="/icon.png" alt="MTS Prototype Builder" className="w-32 h-32 mb-4 mx-auto" />
                 <h1 className="text-5xl text-center font-bold text-bolt-elements-textPrimary mb-2">
-                  Where ideas begin
+                  Give your ideas a spark ⚡
                 </h1>
                 <p className="mb-4 text-center text-bolt-elements-textSecondary">
-                  Bring ideas to life in seconds or get help on existing projects.
+                  Powered by the Praxis API and Vercel AI SDK
                 </p>
               </div>
             )}
@@ -133,11 +133,15 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                     ref={textareaRef}
                     className={`w-full pl-4 pt-4 pr-16 focus:outline-none resize-none text-md text-bolt-elements-textPrimary placeholder-bolt-elements-textTertiary bg-transparent`}
                     onKeyDown={(event) => {
+                      console.log('Key pressed:', event.key);
+
                       if (event.key === 'Enter') {
                         if (event.shiftKey) {
+                          console.log('Shift + Enter pressed, creating new line');
                           return;
                         }
 
+                        console.log('Enter pressed, sending message');
                         event.preventDefault();
 
                         sendMessage?.(event);
@@ -157,7 +161,7 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                   <ClientOnly>
                     {() => (
                       <SendButton
-                        show={input.length > 0 || isStreaming}
+                        show={true}
                         isStreaming={isStreaming}
                         onClick={(event) => {
                           if (isStreaming) {
@@ -202,23 +206,23 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                     ) : null}
                   </div>
                 </div>
-                <div className="bg-bolt-elements-background-depth-1 pb-6">{/* Ghost Element */}</div>
               </div>
             </div>
             {!chatStarted && (
               <div id="examples" className="relative w-full max-w-xl mx-auto mt-8 flex justify-center">
-                <div className="flex flex-col space-y-2 [mask-image:linear-gradient(to_bottom,black_0%,transparent_180%)] hover:[mask-image:none]">
+                <div className="flex flex-col space-y-3">
                   {EXAMPLE_PROMPTS.map((examplePrompt, index) => {
                     return (
                       <button
                         key={index}
                         onClick={(event) => {
                           sendMessage?.(event, examplePrompt.text);
+                          setChatStarted(true);
                         }}
-                        className="group flex items-center w-full gap-2 justify-center bg-transparent text-bolt-elements-textTertiary hover:text-bolt-elements-textPrimary transition-theme"
+                        className="group flex items-center w-full px-4 py-2 rounded-lg bg-[#1F4559] text-[#FDFDFD] hover:bg-[#20465A] transition-colors duration-300 ease-in-out"
                       >
-                        {examplePrompt.text}
-                        <div className="i-ph:arrow-bend-down-left" />
+                        <span className="flex-grow text-left">{examplePrompt.text}</span>
+                        <div className="i-ph:arrow-bend-down-left text-brand_light_grey group-hover:text-brand_white transition-colors duration-300 ease-in-out" />
                       </button>
                     );
                   })}

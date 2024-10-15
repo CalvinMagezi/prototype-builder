@@ -14,6 +14,9 @@ importers:
       '@ai-sdk/anthropic':
         specifier: ^0.0.39
         version: 0.0.39(zod@3.23.8)
+      '@ai-sdk/google':
+        specifier: ^0.0.51
+        version: 0.0.51(zod@3.23.8)
       '@ai-sdk/openai':
         specifier: ^0.0.66
         version: 0.0.66(zod@3.23.8)
@@ -239,6 +242,12 @@ packages:
 
   '@ai-sdk/anthropic@0.0.39':
     resolution: {integrity: sha512-Ouku41O9ebyRi0EUW7pB8+lk4sI74SfJKydzK7FjynhNmCSvi42+U4WPlEjP64NluXUzpkYLvBa6BAd36VY4/g==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.0.0
+
+  '@ai-sdk/google@0.0.51':
+    resolution: {integrity: sha512-MUwN3tFH0grkL5zZdTUFDCDubQdMjykFw0o9bR3dMFtKP8Z2tc/iEqU1fb79+jbz2HzUBbnNGjqMQiUwG3/OrA==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.0.0
@@ -5325,6 +5334,13 @@ snapshots:
       '@ai-sdk/provider-utils': 1.0.9(zod@3.23.8)
       zod: 3.23.8
 
+  '@ai-sdk/google@0.0.51(zod@3.23.8)':
+    dependencies:
+      '@ai-sdk/provider': 0.0.24
+      '@ai-sdk/provider-utils': 1.0.20(zod@3.23.8)
+      json-schema: 0.4.0
+      zod: 3.23.8
+
   '@ai-sdk/openai@0.0.66(zod@3.23.8)':
     dependencies:
       '@ai-sdk/provider': 0.0.24
@@ -7194,7 +7210,7 @@ snapshots:
       '@babel/plugin-syntax-typescript': 7.24.7(@babel/core@7.24.7)
       '@vanilla-extract/babel-plugin-debug-ids': 1.0.6
       '@vanilla-extract/css': 1.15.3
-      esbuild: 0.17.6
+      esbuild: 0.17.19
       eval: 0.1.8
       find-up: 5.0.0
       javascript-stringify: 2.1.0
@@ -9734,7 +9750,7 @@ snapshots:
       acorn: 8.12.0
       pathe: 1.1.2
       pkg-types: 1.1.1
-      ufo: 1.5.3
+      ufo: 1.5.4
 
   modern-ahocorasick@1.0.1: {}
 
